@@ -93,3 +93,41 @@ print('Total validation images: ', num_val_Cherry_healthy + num_val_Cherry_Powde
       + num_val_Tomato_Leaf_Mold + num_val_Tomato_Septoria_leaf_spot + num_val_Tomato_Spider_mites + num_val_Tomato_Target_Spot + num_val_Tomato_Yellow_Leaf_Curl_Virus
       + num_val_Tomato_healthy + num_val_Tomato_mosaic_virus)
 
+BATCH_SIZE = 100
+IMG_SHAPE = 256
+
+def plotImages(images_arr):
+    # plot array of images with 1 row and 5 columns
+    fig, axes = plt.subplots(1, 5, figsize=(20,20))
+    axes = axes.flatten()
+    for img, ax in zip(images_arr, axes):
+        ax.imshow(img)
+    plt.tight_layout()
+    plt.show()
+
+image_gen_train = ImageDataGenerator(rescale=1./255,
+                                     rotation_range=45,
+                                     width_shift_range=0.2,
+                                     height_shift_range=0.2,
+                                     shear_range=0.2,
+                                     zoom_range=0.2,
+                                     horizontal_flip=True,
+                                     vertical_flip=True,
+                                     fill_mode='nearest')
+
+train_data_gen = image_gen_train.flow_from_directory(batch_size=BATCH_SIZE,
+                                                     directory=train_dir,
+                                                     shuffle=True,
+                                                     target_size=(IMG_SHAPE, IMG_SHAPE),
+                                                     class_mode='binary')
+
+# example of how looks single image five times with random augmentations
+# augmented_images = [train_data_gen[0][0][0] for i in range(5)]
+# plotImages(augmented_images)
+
+image_gen_val = ImageDataGenerator(rescale=1./255)
+val_data_gen = image_gen_val.flow_from_directory(batch_size=BATCH_SIZE,
+                                                 directory=val_dir,
+                                                 target_size=(IMG_SHAPE, IMG_SHAPE),
+                                                 class_mode='binary')
+
