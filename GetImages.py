@@ -44,9 +44,7 @@ for x in os.walk('B:\TFG\Dataset2'):
 
     testFilenames = random.sample(os.listdir(Path(x[0])), numTest)
     for testImage in testFilenames:
-        if not os.path.isdir(destTestPath + next(os.walk('B:\TFG\Dataset2'))[1][count-1]):
-            os.makedirs(destTestPath + next(os.walk('B:\TFG\Dataset2'))[1][count-1])
-        shutil.move(x[0] + '\\' + testImage, destTestPath + next(os.walk('B:\TFG\Dataset2'))[1][count - 1])
+        shutil.move(x[0] + '\\' + testImage, destTestPath + 'Test')
 
     count += 1
 

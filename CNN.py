@@ -1,3 +1,5 @@
+from __future__ import absolute_import, division, print_function, unicode_literals
+
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import os
@@ -7,6 +9,25 @@ import logging
 
 logger = tf.get_logger()
 logger.setLevel(logging.ERROR)
+
+print(tf.version.VERSION, tf.executing_eagerly(), tf.keras.layers.BatchNormalization._USE_V2_BEHAVIOR)
+
+# tf.keras.layers.BatchNormalization._USE_V2_BEHAVIOR = False
+# tf.compat.v1.disable_eager_execution()
+# tf.config.experimental.set_memory_growth(tf.config.experimental.list_physical_devices('GPU')[0], True)
+
+# print(tf.version.VERSION, tf.executing_eagerly(), tf.keras.layers.BatchNormalization._USE_V2_BEHAVIOR)
+
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+  # Restrict TensorFlow to only use the first GPU
+  try:
+    tf.config.experimental.set_visible_devices(gpus[0], 'GPU')
+    logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+    print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPU")
+  except RuntimeError as e:
+    # Visible devices must be set before GPUs have been initialized
+    print(e)
 
 base_dir = os.path.dirname('B:\TFG\PlantVillage\\')
 train_dir = os.path.join(base_dir, 'train')
@@ -83,17 +104,21 @@ num_val_Tomato_Target_Spot = len(os.listdir(val_dir_Tomato_Target_Spot))
 num_val_Tomato_mosaic_virus = len(os.listdir(val_dir_Tomato_mosaic_virus))
 num_val_Tomato_Yellow_Leaf_Curl_Virus = len(os.listdir(val_dir_Tomato_Yellow_Leaf_Curl_Virus))
 
-print('Total train images: ',  num_train_Cherry_healthy + num_train_Cherry_Powdery_mildew + num_train_Grape_Black_rot + num_train_Grape_Esca_Black_Measles
-      + num_train_Grape_Leaf_blight + num_train_Grape_healthy + num_train_Tomato_Bacterial_Spot + num_train_Tomato_Early_blight + num_train_Tomato_Late_blight
-      + num_train_Tomato_Leaf_Mold + num_train_Tomato_Septoria_leaf_spot + num_train_Tomato_Spider_mites + num_train_Tomato_Target_Spot + num_train_Tomato_Yellow_Leaf_Curl_Virus
-      + num_train_Tomato_healthy + num_train_Tomato_mosaic_virus)
 
-print('Total validation images: ', num_val_Cherry_healthy + num_val_Cherry_Powdery_mildew + num_val_Grape_Black_rot + num_val_Grape_Esca_Black_Measles
-      + num_val_Grape_Leaf_blight + num_val_Grape_healthy + num_val_Tomato_Bacterial_Spot + num_val_Tomato_Early_blight + num_val_Tomato_Late_blight
-      + num_val_Tomato_Leaf_Mold + num_val_Tomato_Septoria_leaf_spot + num_val_Tomato_Spider_mites + num_val_Tomato_Target_Spot + num_val_Tomato_Yellow_Leaf_Curl_Virus
-      + num_val_Tomato_healthy + num_val_Tomato_mosaic_virus)
+total_train =  num_train_Cherry_healthy + num_train_Cherry_Powdery_mildew + num_train_Grape_Black_rot + num_train_Grape_Esca_Black_Measles \
+               + num_train_Grape_Leaf_blight + num_train_Grape_healthy + num_train_Tomato_Bacterial_Spot + num_train_Tomato_Early_blight + num_train_Tomato_Late_blight\
+               + num_train_Tomato_Leaf_Mold + num_train_Tomato_Septoria_leaf_spot + num_train_Tomato_Spider_mites + num_train_Tomato_Target_Spot + num_train_Tomato_Yellow_Leaf_Curl_Virus\
+               + num_train_Tomato_healthy + num_train_Tomato_mosaic_virus
+print('Total train images: ', total_train)
 
-BATCH_SIZE = 100
+total_val = num_val_Cherry_healthy + num_val_Cherry_Powdery_mildew + num_val_Grape_Black_rot + num_val_Grape_Esca_Black_Measles\
+            + num_val_Grape_Leaf_blight + num_val_Grape_healthy + num_val_Tomato_Bacterial_Spot + num_val_Tomato_Early_blight + num_val_Tomato_Late_blight\
+            + num_val_Tomato_Leaf_Mold + num_val_Tomato_Septoria_leaf_spot + num_val_Tomato_Spider_mites + num_val_Tomato_Target_Spot \
+            + num_val_Tomato_Yellow_Leaf_Curl_Virus + num_val_Tomato_healthy + num_val_Tomato_mosaic_virus
+
+print('Total validation images: ', total_val)
+
+BATCH_SIZE = 32
 IMG_SHAPE = 256
 
 def plotImages(images_arr):
@@ -105,29 +130,88 @@ def plotImages(images_arr):
     plt.tight_layout()
     plt.show()
 
-image_gen_train = ImageDataGenerator(rescale=1./255,
-                                     rotation_range=45,
-                                     width_shift_range=0.2,
-                                     height_shift_range=0.2,
-                                     shear_range=0.2,
-                                     zoom_range=0.2,
-                                     horizontal_flip=True,
-                                     vertical_flip=True,
-                                     fill_mode='nearest')
+image_gen_train = ImageDataGenerator(rescale=1./255)
 
-train_data_gen = image_gen_train.flow_from_directory(batch_size=BATCH_SIZE,
+
+train_data_gen = image_gen_train.flow_from_directory(target_size=(128, 128),
+                                                     batch_size=BATCH_SIZE,
                                                      directory=train_dir,
                                                      shuffle=True,
-                                                     target_size=(IMG_SHAPE, IMG_SHAPE),
-                                                     class_mode='binary')
+                                                     class_mode='categorical')
+
+# print('test data gen: ', test_data_gen[0][0])
+# plotImages(test_data_gen[0][0])
 
 # example of how looks single image five times with random augmentations
-# augmented_images = [train_data_gen[0][0][0] for i in range(5)]
-# plotImages(augmented_images)
+augmented_images = [train_data_gen[0][0][0] for i in range(5)]
+plotImages(augmented_images)
 
 image_gen_val = ImageDataGenerator(rescale=1./255)
-val_data_gen = image_gen_val.flow_from_directory(batch_size=BATCH_SIZE,
-                                                 directory=val_dir,
-                                                 target_size=(IMG_SHAPE, IMG_SHAPE),
-                                                 class_mode='binary')
 
+val_data_gen = image_gen_val.flow_from_directory(target_size=(128, 128),
+                                                 batch_size=BATCH_SIZE,
+                                                 directory=val_dir,
+                                                 class_mode='categorical')
+
+print(val_data_gen)
+
+model = tf.keras.models.Sequential([
+    tf.keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(128, 128, 3)),
+    tf.keras.layers.MaxPooling2D(2, 2),
+
+    tf.keras.layers.Conv2D(64, (3,3), activation='relu'),
+    tf.keras.layers.MaxPooling2D(2, 2),
+
+    tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),
+    tf.keras.layers.MaxPooling2D(2, 2),
+
+    tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),
+    tf.keras.layers.MaxPooling2D(2, 2),
+
+    tf.keras.layers.Flatten(),
+    tf.keras.layers.Dense(512, activation='relu'),
+    tf.keras.layers.Dense(16)
+])
+LEARNING_RATE = 0.001
+model.compile(optimizer='adam',
+              loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
+              metrics=['accuracy'])
+
+model.summary()
+
+epochs = 10
+print(type(np.ceil(total_train / float(BATCH_SIZE))))
+
+
+history = model.fit_generator(train_data_gen,
+                              epochs=epochs,
+                              steps_per_epoch=int(np.ceil(total_train / float(BATCH_SIZE))),
+                              validation_data=val_data_gen,
+                              validation_steps=int(np.ceil(total_val / float(BATCH_SIZE))))
+
+
+
+
+acc = history.history['accuracy']
+print('acc ', acc)
+val_acc = history.history['val_accuracy']
+
+loss = history.history['loss']
+val_loss = history.history['val_loss']
+
+epochs_range = range(epochs)
+print('epochs range: ', epochs_range)
+
+plt.figure(figsize=(8,8))
+plt.subplot(1, 2, 1)
+plt.plot(epochs_range, acc, label='Training Accuracy')
+plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+plt.legend(loc='lower right')
+plt.title('Training and Validation Accuracy')
+
+plt.subplot(1, 2, 2)
+plt.plot(epochs_range, loss, label='Training Loss')
+plt.plot(epochs_range, val_loss, label='Validation Loss')
+plt.legend(loc='upper right')
+plt.title('Training and Validation Loss')
+plt.show()
