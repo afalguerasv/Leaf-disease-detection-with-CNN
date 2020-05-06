@@ -6,6 +6,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import logging
+import datetime
 
 logger = tf.get_logger()
 logger.setLevel(logging.ERROR)
@@ -172,12 +173,16 @@ model = tf.keras.models.Sequential([
     tf.keras.layers.Dense(512, activation='relu'),
     tf.keras.layers.Dense(16)
 ])
-LEARNING_RATE = 0.001
+#LEARNING_RATE = 0.001
 model.compile(optimizer='adam',
               loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 
 model.summary()
+
+#Log directory
+log_dir = ".\\logs\\test\\" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
 epochs = 10
 print(type(np.ceil(total_train / float(BATCH_SIZE))))
@@ -187,9 +192,9 @@ history = model.fit_generator(train_data_gen,
                               epochs=epochs,
                               steps_per_epoch=int(np.ceil(total_train / float(BATCH_SIZE))),
                               validation_data=val_data_gen,
-                              validation_steps=int(np.ceil(total_val / float(BATCH_SIZE))))
-
-
+                              validation_steps=int(np.ceil(total_val / float(BATCH_SIZE))),
+                              verbose=1,
+                              callbacks=[tensorboard_callback])
 
 
 acc = history.history['accuracy']
