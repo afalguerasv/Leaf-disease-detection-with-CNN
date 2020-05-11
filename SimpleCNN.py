@@ -13,12 +13,6 @@ logger.setLevel(logging.ERROR)
 
 print(tf.version.VERSION, tf.executing_eagerly(), tf.keras.layers.BatchNormalization._USE_V2_BEHAVIOR)
 
-# tf.keras.layers.BatchNormalization._USE_V2_BEHAVIOR = False
-# tf.compat.v1.disable_eager_execution()
-# tf.config.experimental.set_memory_growth(tf.config.experimental.list_physical_devices('GPU')[0], True)
-
-# print(tf.version.VERSION, tf.executing_eagerly(), tf.keras.layers.BatchNormalization._USE_V2_BEHAVIOR)
-
 gpus = tf.config.experimental.list_physical_devices('GPU')
 if gpus:
   # Restrict TensorFlow to only use the first GPU
@@ -30,97 +24,14 @@ if gpus:
     # Visible devices must be set before GPUs have been initialized
     print(e)
 
-base_dir = os.path.dirname('B:\TFG\PlantVillage\\')
+base_dir = os.path.dirname('B:\TFG\PlantVillage2\\')
 train_dir = os.path.join(base_dir, 'train')
 val_dir = os.path.join(base_dir, 'validation')
+test_dir = os.path.join(base_dir, 'test')
 
-# Path vars for TRAIN sets
-train_dir_Cherry_healthy = os.path.join(train_dir, 'Cherry___healthy')
-train_dir_Cherry_Powdery_mildew = os.path.join(train_dir, 'Cherry___Powdery_mildew')
-train_dir_Grape_healthy = os.path.join(train_dir, 'Grape___healthy')
-train_dir_Grape_Black_rot = os.path.join(train_dir, 'Grape___Black_rot')
-train_dir_Grape_Esca_Black_Measles = os.path.join(train_dir, 'Grape___Esca_Black_Measles')
-train_dir_Grape_Leaf_blight = os.path.join(train_dir, 'Grape___Leaf_blight_Isariopsis_Leaf_Spot')
-train_dir_Tomato_healthy = os.path.join(train_dir, 'Tomato___healthy')
-train_dir_Tomato_Bacterial_Spot = os.path.join(train_dir, 'Tomato___Bacterial_spot')
-train_dir_Tomato_Early_blight = os.path.join(train_dir, 'Tomato___Early_blight')
-train_dir_Tomato_Late_blight = os.path.join(train_dir, 'Tomato___Late_blight')
-train_dir_Tomato_Leaf_Mold = os.path.join(train_dir, 'Tomato___Leaf_Mold')
-train_dir_Tomato_Septoria_leaf_spot = os.path.join(train_dir, 'Tomato___Septoria_leaf_spot')
-train_dir_Tomato_Spider_mites = os.path.join(train_dir, 'Tomato___Spider_mites_Two-spotted_spider_mite')
-train_dir_Tomato_Target_Spot = os.path.join(train_dir, 'Tomato___Target_Spot')
-train_dir_Tomato_mosaic_virus = os.path.join(train_dir, 'Tomato___Tomato_mosaic_virus')
-train_dir_Tomato_Yellow_Leaf_Curl_Virus = os.path.join(train_dir, 'Tomato___Tomato_Yellow_Leaf_Curl_Virus')
-
-# Path vars for VALIDATION sets
-val_dir_Cherry_healthy = os.path.join(val_dir, 'Cherry___healthy')
-val_dir_Cherry_Powdery_mildew = os.path.join(val_dir, 'Cherry___Powdery_mildew')
-val_dir_Grape_healthy = os.path.join(val_dir, 'Grape___healthy')
-val_dir_Grape_Black_rot = os.path.join(val_dir, 'Grape___Black_rot')
-val_dir_Grape_Esca_Black_Measles = os.path.join(val_dir, 'Grape___Esca_Black_Measles')
-val_dir_Grape_Leaf_blight = os.path.join(val_dir, 'Grape___Leaf_blight_Isariopsis_Leaf_Spot')
-val_dir_Tomato_healthy = os.path.join(val_dir, 'Tomato___healthy')
-val_dir_Tomato_Bacterial_Spot = os.path.join(val_dir, 'Tomato___Bacterial_spot')
-val_dir_Tomato_Early_blight = os.path.join(val_dir, 'Tomato___Early_blight')
-val_dir_Tomato_Late_blight = os.path.join(val_dir, 'Tomato___Late_blight')
-val_dir_Tomato_Leaf_Mold = os.path.join(val_dir, 'Tomato___Leaf_Mold')
-val_dir_Tomato_Septoria_leaf_spot = os.path.join(val_dir, 'Tomato___Septoria_leaf_spot')
-val_dir_Tomato_Spider_mites = os.path.join(val_dir, 'Tomato___Spider_mites_Two-spotted_spider_mite')
-val_dir_Tomato_Target_Spot = os.path.join(val_dir, 'Tomato___Target_Spot')
-val_dir_Tomato_mosaic_virus = os.path.join(val_dir, 'Tomato___Tomato_mosaic_virus')
-val_dir_Tomato_Yellow_Leaf_Curl_Virus = os.path.join(val_dir, 'Tomato___Tomato_Yellow_Leaf_Curl_Virus')
-
-# Let's count how many train and validation images we have
-num_train_Cherry_healthy = len(os.listdir(train_dir_Cherry_healthy))
-num_train_Cherry_Powdery_mildew = len(os.listdir(train_dir_Cherry_Powdery_mildew))
-num_train_Grape_healthy = len(os.listdir(train_dir_Grape_healthy))
-num_train_Grape_Black_rot = len(os.listdir(train_dir_Grape_Black_rot))
-num_train_Grape_Esca_Black_Measles = len(os.listdir(train_dir_Grape_Esca_Black_Measles))
-num_train_Grape_Leaf_blight = len(os.listdir(train_dir_Grape_Leaf_blight))
-num_train_Tomato_healthy = len(os.listdir(train_dir_Tomato_healthy))
-num_train_Tomato_Bacterial_Spot = len(os.listdir(train_dir_Tomato_Bacterial_Spot))
-num_train_Tomato_Early_blight = len(os.listdir(train_dir_Tomato_Early_blight))
-num_train_Tomato_Late_blight = len(os.listdir(train_dir_Tomato_Late_blight))
-num_train_Tomato_Leaf_Mold = len(os.listdir(train_dir_Tomato_Leaf_Mold))
-num_train_Tomato_Septoria_leaf_spot = len(os.listdir(train_dir_Tomato_Septoria_leaf_spot))
-num_train_Tomato_Spider_mites = len(os.listdir(train_dir_Tomato_Spider_mites))
-num_train_Tomato_Target_Spot = len(os.listdir(train_dir_Tomato_Target_Spot))
-num_train_Tomato_mosaic_virus = len(os.listdir(train_dir_Tomato_mosaic_virus))
-num_train_Tomato_Yellow_Leaf_Curl_Virus = len(os.listdir(train_dir_Tomato_Yellow_Leaf_Curl_Virus))
-
-num_val_Cherry_healthy = len(os.listdir(val_dir_Cherry_healthy))
-num_val_Cherry_Powdery_mildew = len(os.listdir(val_dir_Cherry_Powdery_mildew))
-num_val_Grape_healthy = len(os.listdir(val_dir_Grape_healthy))
-num_val_Grape_Black_rot = len(os.listdir(val_dir_Grape_Black_rot))
-num_val_Grape_Esca_Black_Measles = len(os.listdir(val_dir_Grape_Esca_Black_Measles))
-num_val_Grape_Leaf_blight = len(os.listdir(val_dir_Grape_Leaf_blight))
-num_val_Tomato_healthy = len(os.listdir(val_dir_Tomato_healthy))
-num_val_Tomato_Bacterial_Spot = len(os.listdir(val_dir_Tomato_Bacterial_Spot))
-num_val_Tomato_Early_blight = len(os.listdir(val_dir_Tomato_Early_blight))
-num_val_Tomato_Late_blight = len(os.listdir(val_dir_Tomato_Late_blight))
-num_val_Tomato_Leaf_Mold = len(os.listdir(val_dir_Tomato_Leaf_Mold))
-num_val_Tomato_Septoria_leaf_spot = len(os.listdir(val_dir_Tomato_Septoria_leaf_spot))
-num_val_Tomato_Spider_mites = len(os.listdir(val_dir_Tomato_Spider_mites))
-num_val_Tomato_Target_Spot = len(os.listdir(val_dir_Tomato_Target_Spot))
-num_val_Tomato_mosaic_virus = len(os.listdir(val_dir_Tomato_mosaic_virus))
-num_val_Tomato_Yellow_Leaf_Curl_Virus = len(os.listdir(val_dir_Tomato_Yellow_Leaf_Curl_Virus))
-
-
-total_train =  num_train_Cherry_healthy + num_train_Cherry_Powdery_mildew + num_train_Grape_Black_rot + num_train_Grape_Esca_Black_Measles \
-               + num_train_Grape_Leaf_blight + num_train_Grape_healthy + num_train_Tomato_Bacterial_Spot + num_train_Tomato_Early_blight + num_train_Tomato_Late_blight\
-               + num_train_Tomato_Leaf_Mold + num_train_Tomato_Septoria_leaf_spot + num_train_Tomato_Spider_mites + num_train_Tomato_Target_Spot + num_train_Tomato_Yellow_Leaf_Curl_Virus\
-               + num_train_Tomato_healthy + num_train_Tomato_mosaic_virus
-print('Total train images: ', total_train)
-
-total_val = num_val_Cherry_healthy + num_val_Cherry_Powdery_mildew + num_val_Grape_Black_rot + num_val_Grape_Esca_Black_Measles\
-            + num_val_Grape_Leaf_blight + num_val_Grape_healthy + num_val_Tomato_Bacterial_Spot + num_val_Tomato_Early_blight + num_val_Tomato_Late_blight\
-            + num_val_Tomato_Leaf_Mold + num_val_Tomato_Septoria_leaf_spot + num_val_Tomato_Spider_mites + num_val_Tomato_Target_Spot \
-            + num_val_Tomato_Yellow_Leaf_Curl_Virus + num_val_Tomato_healthy + num_val_Tomato_mosaic_virus
-
-print('Total validation images: ', total_val)
-
-BATCH_SIZE = 32
-IMG_SHAPE = 256
+EPOCHS = 20
+BATCH_SIZE = 64
+IMG_SHAPE = 100
 
 def plotImages(images_arr):
     # plot array of images with 1 row and 5 columns
@@ -131,12 +42,27 @@ def plotImages(images_arr):
     plt.tight_layout()
     plt.show()
 
+total_train_images = 0  # total files
+total_validation_images = 0
+for dirpath, dirnames, filenames in os.walk(train_dir):
+    N_c = len(filenames)
+    total_train_images += N_c
+    print("Files in ", dirpath, N_c)
+print("Total Train Files ",total_train_images)
+
+for dirpath, dirnames, filenames in os.walk(val_dir):
+    N_c = len(filenames)
+    total_validation_images += N_c
+    print("Files in ", dirpath, N_c)
+print("Total Validation Files ",total_validation_images)
+
 image_gen_train = ImageDataGenerator(rescale=1./255)
 
 
-train_data_gen = image_gen_train.flow_from_directory(target_size=(128, 128),
+train_data_gen = image_gen_train.flow_from_directory(target_size=(100, 100),
                                                      batch_size=BATCH_SIZE,
                                                      directory=train_dir,
+                                                     color_mode='rgb',
                                                      shuffle=True,
                                                      class_mode='categorical')
 
@@ -149,7 +75,7 @@ plotImages(augmented_images)
 
 image_gen_val = ImageDataGenerator(rescale=1./255)
 
-val_data_gen = image_gen_val.flow_from_directory(target_size=(128, 128),
+val_data_gen = image_gen_val.flow_from_directory(target_size=(100, 100),
                                                  batch_size=BATCH_SIZE,
                                                  directory=val_dir,
                                                  class_mode='categorical')
@@ -157,7 +83,7 @@ val_data_gen = image_gen_val.flow_from_directory(target_size=(128, 128),
 print(val_data_gen)
 
 model = tf.keras.models.Sequential([
-    tf.keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(128, 128, 3)),
+    tf.keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(100, 100, 3)),
     tf.keras.layers.MaxPooling2D(2, 2),
 
     tf.keras.layers.Conv2D(64, (3,3), activation='relu'),
@@ -181,22 +107,22 @@ model.compile(optimizer='adam',
 model.summary()
 
 #Log directory
-log_dir = ".\\logs\\test\\" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+log_dir = ".\\logs\\test\\" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + "Simple"
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
-epochs = 10
-print(type(np.ceil(total_train / float(BATCH_SIZE))))
+
+print(type(np.ceil(16888 / float(BATCH_SIZE))))
 
 
 history = model.fit_generator(train_data_gen,
-                              epochs=epochs,
-                              steps_per_epoch=int(np.ceil(total_train / float(BATCH_SIZE))),
+                              epochs=EPOCHS,
+                              steps_per_epoch=int(np.ceil(total_train_images / float(BATCH_SIZE))),
                               validation_data=val_data_gen,
-                              validation_steps=int(np.ceil(total_val / float(BATCH_SIZE))),
-                              verbose=1,
+                              validation_steps=int(np.ceil(total_validation_images / float(BATCH_SIZE))),
+                              verbose=2,
                               callbacks=[tensorboard_callback])
 
-
+model.save('.\\models\\SimpleModel\\simpleModel.h5')
 acc = history.history['accuracy']
 print('acc ', acc)
 val_acc = history.history['val_accuracy']
@@ -204,7 +130,7 @@ val_acc = history.history['val_accuracy']
 loss = history.history['loss']
 val_loss = history.history['val_loss']
 
-epochs_range = range(epochs)
+epochs_range = range(EPOCHS)
 print('epochs range: ', epochs_range)
 
 plt.figure(figsize=(8,8))

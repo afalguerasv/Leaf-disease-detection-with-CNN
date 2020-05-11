@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a751494-39e6-4707-b4ad-2738fe140fe2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/AugmentedDataCNN.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BatchNormModel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L2RegModel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DropoutModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenameImages.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestModels.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphPlot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleCNN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AugmentedDataCNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/AugmentedDataCNN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BatchNormModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/BatchNormModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GetImages.py" beforeDir="false" afterPath="$PROJECT_DIR$/GetImages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/L2RegModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/L2RegModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleCNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleCNN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +47,7 @@
       <recent name="C:\Users\Afalguerasv\PycharmProjects\PrepareDataset" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.AugmentedDataCNN">
     <configuration name="AugmentedDataCNN" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PrepareDataset" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -63,7 +67,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="DatasetGen" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="GetImages" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PrepareDataset" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -76,7 +80,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DatasetGen.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GetImages.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -85,7 +89,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ResizeImages" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="RenameImages" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PrepareDataset" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -98,7 +102,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ResizeImages.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RenameImages.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -107,7 +111,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="SimpleCNN" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="SimpleCNN (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PrepareDataset" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -120,7 +124,29 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\Afalguerasv\PycharmProjects\FinalProject\leaf-disease-detection-with-cnn\SimpleCNN.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SimpleCNN.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestModels" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PrepareDataset" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TestModels.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -151,32 +177,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PrepareDataset" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test" />
         <item itemvalue="Python.AugmentedDataCNN" />
-        <item itemvalue="Python.SimpleCNN" />
-        <item itemvalue="Python.ResizeImages" />
-        <item itemvalue="Python.DatasetGen" />
+        <item itemvalue="Python.RenameImages" />
+        <item itemvalue="Python.GetImages" />
+        <item itemvalue="Python.SimpleCNN (1)" />
+        <item itemvalue="Python.TestModels" />
       </list>
     </recent_temporary>
   </component>
@@ -198,7 +205,11 @@
       <workItem from="1588167983702" duration="5369000" />
       <workItem from="1588329785941" duration="2488000" />
       <workItem from="1588610604737" duration="4026000" />
-      <workItem from="1588682257793" duration="7925000" />
+      <workItem from="1588682257793" duration="31498000" />
+      <workItem from="1589039595888" duration="9593000" />
+      <workItem from="1589053713600" duration="10408000" />
+      <workItem from="1589189113674" duration="15110000" />
+      <workItem from="1589214691090" duration="1407000" />
     </task>
     <task id="LOCAL-00001" summary="Correcions en el GetImages per repartir com toca les imatges test i avanç fins a una primera CNN que dóna resultats">
       <created>1587408549190</created>
@@ -207,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587408549190</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="New models, added logs for tensorboard">
+      <created>1588782236276</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588782236276</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,17 +233,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Correcions en el GetImages per repartir com toca les imatges test i avanç fins a una primera CNN que dóna resultats" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correcions en el GetImages per repartir com toca les imatges test i avanç fins a una primera CNN que dóna resultats" />
+    <MESSAGE value="New models, added logs for tensorboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="New models, added logs for tensorboard" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Inspections" timestamp="1588169170108">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Inspections/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588169170108" />
-    <state x="521" y="114" key="CommitChangelistDialog2" timestamp="1587408548673">
+    <state x="521" y="114" key="CommitChangelistDialog2" timestamp="1588782235675">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="521" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587408548673" />
+    <state x="521" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588782235675" />
     <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1586678090254">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -262,19 +281,19 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="69" y="172" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586670753872" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1587408556555">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588782243228">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587408556555" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588782243228" />
     <state width="968" height="524" key="XDebugger.FullValuePopup" timestamp="1586612708932">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state width="968" height="524" key="XDebugger.FullValuePopup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586612708932" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1588682258680">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1589214701553">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1264" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586785829063" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588682258680" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1589214701553" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PrepareDataset$DatasetGen.coverage" NAME="DatasetGen Coverage Results" MODIFIED="1586664145481" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

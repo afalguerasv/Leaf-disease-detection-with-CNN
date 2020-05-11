@@ -4,9 +4,9 @@ import random
 from pathlib import Path
 
 dirpath = 'B:/TFG/plantvillage-dataset/plantvillage dataset/color'
-destTrainPath = 'B:\TFG\PlantVillage\Train\\'
-destValiPath = 'B:\TFG\PlantVillage\Validation\\'
-destTestPath = 'B:\TFG\PlantVillage\Test\\'
+destTrainPath = 'B:\TFG\PlantVillage2\Train\\'
+destValiPath = 'B:\TFG\PlantVillage2\Validation\\'
+destTestPath = 'B:\TFG\PlantVillage2\Test\\'
 count = 0
 for x in os.walk('B:\TFG\Dataset2'):
     # X[0] fa una primera iteració amb B:\TFG\Dataset2 i la resta retorna el nom de cada subcarpeta
@@ -14,9 +14,9 @@ for x in os.walk('B:\TFG\Dataset2'):
     #x[2] retorna els elements de la subcarpeta
     print(len(x[2]))
     # Calculem el numero de imatges de cada tipus en % per cada cas
-    numTrain = int((len(x[2])*70)/100)
-    numValidation = int((len(x[2])*10)/100)
-    numTest = int((len(x[2])*20)/100)
+    numTrain = int((len(x[2])*80)/100)
+    numValidation = int((len(x[2])*19)/100)
+    numTest = int((len(x[2])*1)/100)
     print('numTrain: ', numTrain)
     print('numValidatio: ', numValidation)
     print('numTest: ', numTest)
@@ -38,13 +38,15 @@ for x in os.walk('B:\TFG\Dataset2'):
 
     validationFilenames = random.sample(os.listdir(Path(x[0])), numValidation)
     for valImage in validationFilenames:
-        if not os.path.isdir(destValiPath + next(os.walk('B:\TFG\Dataset2'))[1][count-1]):
+        if not os.path.isdir(destValiPath + next(os.walk('B:\TFG\Dataset2'))[1][count - 1]):
             os.makedirs(destValiPath + next(os.walk('B:\TFG\Dataset2'))[1][count-1])
         shutil.move(x[0] + '\\' + valImage, destValiPath + next(os.walk('B:\TFG\Dataset2'))[1][count - 1])
 
     testFilenames = random.sample(os.listdir(Path(x[0])), numTest)
     for testImage in testFilenames:
-        shutil.move(x[0] + '\\' + testImage, destTestPath + 'Test')
+        if not os.path.isdir(destTestPath + next(os.walk('B:\TFG\Dataset2'))[1][count - 1]):
+            os.makedirs(destTestPath + next(os.walk('B:\TFG\Dataset2'))[1][count - 1])
+        shutil.move(x[0] + '\\' + testImage, destTestPath + next(os.walk('B:\TFG\Dataset2'))[1][count - 1])
 
     count += 1
 
