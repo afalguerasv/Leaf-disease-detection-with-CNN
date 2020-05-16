@@ -8,6 +8,7 @@ import numpy as np
 import logging
 import datetime
 
+
 logger = tf.get_logger()
 logger.setLevel(logging.ERROR)
 
@@ -70,8 +71,8 @@ train_data_gen = image_gen_train.flow_from_directory(target_size=(100, 100),
 # plotImages(test_data_gen[0][0])
 
 # example of how looks single image five times with random augmentations
-augmented_images = [train_data_gen[0][0][0] for i in range(5)]
-plotImages(augmented_images)
+# augmented_images = [train_data_gen[0][0][0] for i in range(5)]
+# plotImages(augmented_images)
 
 image_gen_val = ImageDataGenerator(rescale=1./255)
 

@@ -98,94 +98,95 @@ val_data_gen = image_gen_val.flow_from_directory(target_size=(100, 100),
                                                  color_mode='rgb',
                                                  class_mode='categorical')
 
-with tf.device('/gpu:0'):
-    augmentedModel = tf.keras.models.Sequential([
-        tf.keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(100, 100, 3)),
-        tf.keras.layers.MaxPooling2D(2, 2),
+# with tf.device('/gpu:0'):
+#     augmentedModel = tf.keras.models.Sequential([
+#         tf.keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(100, 100, 3)),
+#         tf.keras.layers.MaxPooling2D(2, 2),
+#
+#         tf.keras.layers.Conv2D(64, (3,3), activation='relu'),
+#         tf.keras.layers.MaxPooling2D(2, 2),
+#
+#         tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),
+#         tf.keras.layers.MaxPooling2D(2, 2),
+#
+#         tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),
+#         tf.keras.layers.MaxPooling2D(2, 2),
+#
+#         tf.keras.layers.Flatten(),
+#         tf.keras.layers.Dense(512, activation='relu'),
+#         tf.keras.layers.Dense(16)
+#     ])
+#
+# with tf.device('/gpu:0'):
+#     augmentedModel.compile(optimizer='adam',
+#                   loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
+#                   metrics=['accuracy'])
+#
+# augmentedModel.summary()
+#
+# #Log directory for augmented model
+# log_dir = ".\\logs\\test\\" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + "Augmented"
+# tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
+#
+# # History for Augmented model
+# print('--------------Training augmented model----------------')
+# with tf.device('/gpu:0'):
+#     history = augmentedModel.fit_generator(train_data_gen,
+#                                   epochs=EPOCHS,
+#                                   steps_per_epoch=int(np.ceil(total_train_images / float(BATCH_SIZE))),
+#                                   validation_data=val_data_gen,
+#                                   validation_steps=int(np.ceil(total_validation_images / float(BATCH_SIZE))),
+#                                   callbacks=[tensorboard_callback])
+#
+# augmentedModel.save('.\\models\\SimpleModel\\augmentedModel.h5')
+# acc = history.history['accuracy']
+# print('acc ', acc)
+# val_acc = history.history['val_accuracy']
+#
+# loss = history.history['loss']
+# val_loss = history.history['val_loss']
+#
+# epochs_range = range(EPOCHS)
+# print('epochs range: ', epochs_range)
+#
+# plt.figure(figsize=(8,8))
+# plt.subplot(1, 2, 1)
+# plt.plot(epochs_range, acc, label='Training Accuracy')
+# plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+# plt.legend(loc='lower right')
+# plt.title('Training and Validation Accuracy Augmented Model')
+#
+# plt.subplot(1, 2, 2)
+# plt.plot(epochs_range, loss, label='Training Loss')
+# plt.plot(epochs_range, val_loss, label='Validation Loss')
+# plt.legend(loc='upper right')
+# plt.title('Training and Validation Loss Augmented Model')
+# plt.show()
 
-        tf.keras.layers.Conv2D(64, (3,3), activation='relu'),
-        tf.keras.layers.MaxPooling2D(2, 2),
-
-        tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),
-        tf.keras.layers.MaxPooling2D(2, 2),
-
-        tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),
-        tf.keras.layers.MaxPooling2D(2, 2),
-
-        tf.keras.layers.Flatten(),
-        tf.keras.layers.Dense(512, activation='relu'),
-        tf.keras.layers.Dense(16)
-    ])
-
-with tf.device('/gpu:0'):
-    augmentedModel.compile(optimizer='adam',
-                  loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
-                  metrics=['accuracy'])
-
-augmentedModel.summary()
-
-#Log directory for augmented model
-log_dir = ".\\logs\\test\\" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + "Augmented"
-tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
-
-# History for Augmented model
-print('--------------Training augmented model----------------')
-with tf.device('/gpu:0'):
-    history = augmentedModel.fit_generator(train_data_gen,
-                                  epochs=EPOCHS,
-                                  steps_per_epoch=int(np.ceil(total_train_images / float(BATCH_SIZE))),
-                                  validation_data=val_data_gen,
-                                  validation_steps=int(np.ceil(total_validation_images / float(BATCH_SIZE))),
-                                  callbacks=[tensorboard_callback])
-
-augmentedModel.save('.\\models\\SimpleModel\\augmentedModel.h5')
-acc = history.history['accuracy']
-print('acc ', acc)
-val_acc = history.history['val_accuracy']
-
-loss = history.history['loss']
-val_loss = history.history['val_loss']
-
-epochs_range = range(EPOCHS)
-print('epochs range: ', epochs_range)
-
-plt.figure(figsize=(8,8))
-plt.subplot(1, 2, 1)
-plt.plot(epochs_range, acc, label='Training Accuracy')
-plt.plot(epochs_range, val_acc, label='Validation Accuracy')
-plt.legend(loc='lower right')
-plt.title('Training and Validation Accuracy Augmented Model')
-
-plt.subplot(1, 2, 2)
-plt.plot(epochs_range, loss, label='Training Loss')
-plt.plot(epochs_range, val_loss, label='Validation Loss')
-plt.legend(loc='upper right')
-plt.title('Training and Validation Loss Augmented Model')
-plt.show()
-
-#----------------------BATCH NORMALIZED MODEL------------------------
-# load model from BatchNormModel.py
+# #----------------------BATCH NORMALIZED MODEL------------------------
+# # load model from BatchNormModel.py
 # batchNormModel = BNM.batchNormModel()
 # batchNormModel.compile(optimizer='adam',
 #               loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
 #               metrics=['accuracy'])
 # batchNormModel.summary()
-
-# log directory for BNM
+#
+# # log directory for BNM
 # log_dir = ".\\logs\\test\\" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + 'BNM'
 # tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
-
-# History for Batch Normalized model
+#
+# # History for Batch Normalized model
 # print('--------------Training batch normalized model----------------')
-# BNHistory = model.fit_generator(train_data_gen,
-#                               epochs=EPOCHS,
-#                               steps_per_epoch=int(np.ceil(total_train / float(BATCH_SIZE))),
-#                               validation_data=val_data_gen,
-#                               validation_steps=int(np.ceil(total_val / float(BATCH_SIZE))),
-#                               verbose=2,
-#                               callbacks=[tensorboard_callback])
+# with tf.device('/gpu:0'):
+#     BNHistory = batchNormModel.fit_generator(train_data_gen,
+#                                              epochs=EPOCHS,
+#                                              steps_per_epoch=int(np.ceil(total_train_images / float(BATCH_SIZE))),
+#                                              validation_data=val_data_gen,
+#                                              validation_steps=int(np.ceil(total_validation_images / float(BATCH_SIZE))),
+#                                              verbose=2,
+#                                              callbacks=[tensorboard_callback])
 #
-#
+# batchNormModel.save('.\\models\\SimpleModel\\batchNormModel.h5')
 # acc = BNHistory.history['accuracy']
 # val_acc = BNHistory.history['val_accuracy']
 # loss = BNHistory.history['loss']
@@ -206,81 +207,79 @@ plt.show()
 # plt.legend(loc='upper right')
 # plt.title('Training and Validation Loss BNModel')
 # plt.show()
+# graphplt.plotGraph(acc, val_acc, loss, val_loss, epochs_range,
+#                    'Training and Validation Accuracy BNModel',
+#                    'Training and Validation Loss BNModel')
 
 # #----------------------L2 REGULARIZED MODEL------------------------
-# # load model from L2RegModel.py
-# l2Model = l2.L2Model()
-# with tf.device('/gpu:0'):
-#     l2Model.compile(optimizer='adam',
-#                    loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
-#                    metrics=['accuracy'])
-#
-# l2Model.summary()
-#
-# # log directory for L2 model
-# log_dir = ".\\logs\\test\\" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + 'L2_0_0001_noBatch'
-# tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
-#
-# # History for Batch L2 model
-# print('--------------Training L2 model----------------')
-# L2History = l2Model.fit_generator(train_data_gen,
-#                               epochs=30,
-#                               steps_per_epoch=int(np.ceil(total_train / float(BATCH_SIZE))),
-#                               validation_data=val_data_gen,
-#                               validation_steps=int(np.ceil(total_val / float(BATCH_SIZE))),
-#                               verbose=2,
-#                               callbacks=[tensorboard_callback])
-#
-#
-# acc = L2History.history['accuracy']
-# val_acc = L2History.history['val_accuracy']
-# loss = L2History.history['loss']
-# val_loss = L2History.history['val_loss']
-#
-# epochs_range = range(30)
-#
-# graphplt.plotGraph(acc,
-#                    val_acc,
-#                    loss,
-#                    val_loss,
-#                    epochs_range,
-#                    'Training and Validation Accuracy L2Model',
-#                    'Training and Validation Loss L2Model')
+# load model from L2RegModel.py
+l2Model = l2.L2Model()
+with tf.device('/gpu:0'):
+    l2Model.compile(optimizer='adam',
+                   loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
+                   metrics=['accuracy'])
+
+l2Model.summary()
+
+# log directory for L2 model
+log_dir = ".\\logs\\test\\" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + 'L2_0_001_noBatch'
+tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
+
+# History for Batch L2 model
+print('--------------Training L2 model----------------')
+L2History = l2Model.fit_generator(train_data_gen,
+                              epochs=20,
+                              steps_per_epoch=int(np.ceil(total_train_images / float(BATCH_SIZE))),
+                              validation_data=val_data_gen,
+                              validation_steps=int(np.ceil(total_validation_images / float(BATCH_SIZE))),
+                              verbose=2,
+                              callbacks=[tensorboard_callback])
+
+l2Model.save('.\\models\\SimpleModel\\L2Model0_001.h5')
+
+acc = L2History.history['accuracy']
+val_acc = L2History.history['val_accuracy']
+loss = L2History.history['loss']
+val_loss = L2History.history['val_loss']
+
+epochs_range = range(20)
+
+graphplt.plotGraph(acc, val_acc, loss, val_loss, epochs_range,
+                   'Training and Validation Accuracy L2Model',
+                   'Training and Validation Loss L2Model')
 
 #----------------------DROPOUT MODEL------------------------
-# load model from L2RegModel.py
-# dptmodel = dptmodel.dropoutModel()
-# dptmodel.compile(optimizer='adam',
-#                loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
-#                metrics=['accuracy'])
-# dptmodel.summary()
-#
-# # log directory for L2 model
-# log_dir = ".\\logs\\test\\" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + 'DPT_0_5_noBatch'
-# tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
-#
-# # History for Batch L2 model
-# print('--------------Training Dropout model----------------')
-# DPTHystory = dptmodel.fit_generator(train_data_gen,
-#                               epochs=20,
-#                               steps_per_epoch=int(np.ceil(total_train / float(BATCH_SIZE))),
-#                               validation_data=val_data_gen,
-#                               validation_steps=int(np.ceil(total_val / float(BATCH_SIZE))),
-#                               verbose=2,
-#                               callbacks=[tensorboard_callback])
-#
-#
-# acc = DPTHystory.history['accuracy']
-# val_acc = DPTHystory.history['val_accuracy']
-# loss = DPTHystory.history['loss']
-# val_loss = DPTHystory.history['val_loss']
-#
-# epochs_range = range(20)
-#
-# graphplt.plotGraph(acc,
-#                    val_acc,
-#                    loss,
-#                    val_loss,
-#                    epochs_range,
-#                    'Training and Validation Accuracy DPTModel',
-#                    'Training and Validation Loss DPTModel')
+
+# load model from DropoutModel
+dptmodel = dptmodel.dropoutModel()
+dptmodel.compile(optimizer='adam',
+               loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
+               metrics=['accuracy'])
+dptmodel.summary()
+
+# log directory for L2 model
+log_dir = ".\\logs\\test\\" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + 'DPT_0_05_noBatch'
+tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
+
+# History for Batch L2 model
+print('--------------Training Dropout model----------------')
+DPTHystory = dptmodel.fit_generator(train_data_gen,
+                              epochs=20,
+                              steps_per_epoch=int(np.ceil(total_train_images / float(BATCH_SIZE))),
+                              validation_data=val_data_gen,
+                              validation_steps=int(np.ceil(total_validation_images / float(BATCH_SIZE))),
+                              verbose=2,
+                              callbacks=[tensorboard_callback])
+
+dptmodel.save('.\\models\\SimpleModel\\DptModel0_05.h5')
+
+acc = DPTHystory.history['accuracy']
+val_acc = DPTHystory.history['val_accuracy']
+loss = DPTHystory.history['loss']
+val_loss = DPTHystory.history['val_loss']
+
+epochs_range = range(20)
+
+graphplt.plotGraph(acc, val_acc, loss, val_loss, epochs_range,
+                   'Training and Validation Accuracy DPTModel',
+                   'Training and Validation Loss DPTModel')

@@ -3,7 +3,7 @@ import tensorflow as tf
 def batchNormModel():
     batchNormModel = tf.keras.models.Sequential()
 
-    batchNormModel.add(tf.keras.layers.Conv2D(32, (3, 3), input_shape=(128, 128, 3)))
+    batchNormModel.add(tf.keras.layers.Conv2D(32, (3, 3), input_shape=(100, 100, 3)))
     batchNormModel.add(tf.keras.layers.BatchNormalization())
     batchNormModel.add(tf.keras.layers.Activation('relu'))
     batchNormModel.add(tf.keras.layers.MaxPooling2D(2, 2))
