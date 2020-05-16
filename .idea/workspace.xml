@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a751494-39e6-4707-b4ad-2738fe140fe2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AugmentedDataCNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/AugmentedDataCNN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BatchNormModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/BatchNormModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DropoutModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/DropoutModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/L2RegModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/L2RegModel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenameImages.py" beforeDir="false" afterPath="$PROJECT_DIR$/RenameImages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimpleCNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleCNN.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +38,7 @@
       <recent name="C:\Users\Afalguerasv\PycharmProjects\PrepareDataset" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.AugmentedDataCNN">
+  <component name="RunManager" selected="Python.RenameImages">
     <configuration name="AugmentedDataCNN" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PrepareDataset" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -93,9 +87,6 @@
       <module name="PrepareDataset" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -179,9 +170,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.RenameImages" />
         <item itemvalue="Python.AugmentedDataCNN" />
         <item itemvalue="Python.SimpleCNN (1)" />
-        <item itemvalue="Python.RenameImages" />
         <item itemvalue="Python.GetImages" />
         <item itemvalue="Python.TestModels" />
       </list>
@@ -211,7 +202,7 @@
       <workItem from="1589189113674" duration="15110000" />
       <workItem from="1589214691090" duration="5568000" />
       <workItem from="1589300726266" duration="10791000" />
-      <workItem from="1589435142518" duration="4844000" />
+      <workItem from="1589435142518" duration="5195000" />
     </task>
     <task id="LOCAL-00001" summary="Correcions en el GetImages per repartir com toca les imatges test i avanç fins a una primera CNN que dóna resultats">
       <created>1587408549190</created>
@@ -234,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589218152427</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="some changes">
+      <created>1589630423085</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589630423085</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,17 +242,18 @@
     <MESSAGE value="Correcions en el GetImages per repartir com toca les imatges test i avanç fins a una primera CNN que dóna resultats" />
     <MESSAGE value="New models, added logs for tensorboard" />
     <MESSAGE value="New models, added logs for tensorboard 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="New models, added logs for tensorboard 2" />
+    <MESSAGE value="some changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="some changes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Inspections" timestamp="1588169170108">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Inspections/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588169170108" />
-    <state x="521" y="114" key="CommitChangelistDialog2" timestamp="1589218151850">
+    <state x="521" y="114" key="CommitChangelistDialog2" timestamp="1589630445608">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="521" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1589218151850" />
+    <state x="521" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1589630445608" />
     <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1586678090254">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
