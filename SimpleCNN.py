@@ -7,7 +7,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import logging
 import datetime
-
+from sklearn.metrics import classification_report, confusion_matrix
+import pandas as pd
+import seaborn as sn
 
 logger = tf.get_logger()
 logger.setLevel(logging.ERROR)
@@ -29,6 +31,17 @@ base_dir = os.path.dirname('B:\TFG\PlantVillage2\\')
 train_dir = os.path.join(base_dir, 'train')
 val_dir = os.path.join(base_dir, 'validation')
 test_dir = os.path.join(base_dir, 'test')
+targetNames = ['Cherry___healthy', 'Cherry___Powdery_mildew', 'Grape___Black_rot',
+               'Grape___Esca_Black_Measles', 'Grape___healthy', 'Grape___Leaf_blight_Isariopsis_Leaf_Spot',
+               'Tomato___Bacterial_spot', 'Tomato___Early_blight', 'Tomato___healthy',
+               'Tomato___Late_blight', 'Tomato___Leaf_Mold', 'Tomato___Septoria_leaf_spot',
+               'Tomato___Spider_mites_Two-spotted_spider_mite', 'Tomato___Target_Spot',
+               'Tomato___Tomato_mosaic_virus', 'Tomato___Tomato_Yellow_Leaf_Curl_Virus']
+shortNames = ['Ch_healthy', 'Ch_PM', 'Gr_BlRt', 'Gr_EsBlMe', 'Gr_healthy', 'Gr_LeafBl',
+               'To_BaSpt', 'To_EarBl', 'To_healthy',
+               'To_LaBl', 'To_Leaf_Mo', 'To_SeptLS',
+               'To_Spider', 'To_TarSpt',
+               'To_MVirus', 'To_YeLeafCuVi']
 
 EPOCHS = 20
 BATCH_SIZE = 64
@@ -45,6 +58,7 @@ def plotImages(images_arr):
 
 total_train_images = 0  # total files
 total_validation_images = 0
+
 for dirpath, dirnames, filenames in os.walk(train_dir):
     N_c = len(filenames)
     total_train_images += N_c
@@ -79,6 +93,13 @@ image_gen_val = ImageDataGenerator(rescale=1./255)
 val_data_gen = image_gen_val.flow_from_directory(target_size=(100, 100),
                                                  batch_size=BATCH_SIZE,
                                                  directory=val_dir,
+                                                 class_mode='categorical')
+image_gen_test = ImageDataGenerator(rescale=1./255)
+
+test_data_gen = image_gen_val.flow_from_directory(target_size=(100, 100),
+                                                 batch_size=BATCH_SIZE,
+                                                 directory=test_dir,
+                                                 shuffle=False,
                                                  class_mode='categorical')
 
 print(val_data_gen)
@@ -133,17 +154,36 @@ val_loss = history.history['val_loss']
 
 epochs_range = range(EPOCHS)
 print('epochs range: ', epochs_range)
-
-plt.figure(figsize=(8,8))
-plt.subplot(1, 2, 1)
-plt.plot(epochs_range, acc, label='Training Accuracy')
-plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+# plot accuracy during training
+# plt.figure(figsize=(8,8))
+plt.subplot(2, 1, 2)
+plt.plot(acc, label='Training Accuracy')
+plt.plot(val_acc, label='Validation Accuracy')
 plt.legend(loc='lower right')
 plt.title('Training and Validation Accuracy')
-
-plt.subplot(1, 2, 2)
-plt.plot(epochs_range, loss, label='Training Loss')
-plt.plot(epochs_range, val_loss, label='Validation Loss')
+plt.grid()
+plt.xticks(range(0, 19))
+# plot loss during training
+plt.subplot(2, 1, 1)
+plt.plot(loss, label='Training Loss')
+plt.plot(val_loss, label='Validation Loss')
 plt.legend(loc='upper right')
 plt.title('Training and Validation Loss')
+plt.xticks(range(0, 19))
+plt.grid()
+plt.show()
+
+#Confution Matrix and Classification Report
+Y_pred = model.predict_generator(test_data_gen, total_validation_images // BATCH_SIZE+1)
+y_pred = np.argmax(Y_pred, axis=1)
+print('Confusion Matrix')
+print(confusion_matrix(test_data_gen.classes, y_pred))
+print('Classification Report')
+
+print(classification_report(test_data_gen.classes, y_pred, target_names=targetNames))
+
+df_cm = pd.DataFrame(confusion_matrix(test_data_gen.classes, y_pred), index=[i for i in shortNames],
+                     columns= [i for i in shortNames])
+plt.figure(figsize=(10, 7))
+sn.heatmap(df_cm, annot=True, cmap='coolwarm', fmt="d")
 plt.show()

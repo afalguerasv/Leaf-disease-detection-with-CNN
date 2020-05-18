@@ -4,9 +4,9 @@ import random
 from pathlib import Path
 
 dirpath = 'B:/TFG/plantvillage-dataset/plantvillage dataset/color'
-destTrainPath = 'B:\TFG\PlantVillage2\Train\\'
-destValiPath = 'B:\TFG\PlantVillage2\Validation\\'
-destTestPath = 'B:\TFG\PlantVillage2\Test\\'
+destTrainPath = 'B:\TFG\LastSeparat\Train\\'
+destValiPath = 'B:\TFG\LastSeparat\Validation\\'
+destTestPath = 'B:\TFG\LastSeparat\Test\\'
 count = 0
 for x in os.walk('B:\TFG\Dataset2'):
     # X[0] fa una primera iteració amb B:\TFG\Dataset2 i la resta retorna el nom de cada subcarpeta
@@ -14,9 +14,9 @@ for x in os.walk('B:\TFG\Dataset2'):
     #x[2] retorna els elements de la subcarpeta
     print(len(x[2]))
     # Calculem el numero de imatges de cada tipus en % per cada cas
-    numTrain = int((len(x[2])*80)/100)
-    numValidation = int((len(x[2])*19)/100)
-    numTest = int((len(x[2])*1)/100)
+    numTrain = int((len(x[2])*78)/100)
+    numValidation = int((len(x[2])*16)/100)
+    numTest = int((len(x[2])*6)/100)
     print('numTrain: ', numTrain)
     print('numValidatio: ', numValidation)
     print('numTest: ', numTest)
